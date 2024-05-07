@@ -1,0 +1,11 @@
+# python opt files
+__pycache__/
+
+# virtual envs
+env/
+.env/
+venv/
+.venv/
+
+# mypy
+.mypy_cache/
