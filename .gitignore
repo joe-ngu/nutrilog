@@ -9,3 +9,6 @@ venv/
 
 # mypy
 .mypy_cache/
+
+# .env file
+.env

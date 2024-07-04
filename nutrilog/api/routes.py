@@ -3,10 +3,10 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from NutriLog.api import models
-from NutriLog.api.dependencies import get_repository
-from NutriLog.database import models as db_models
-from NutriLog.database.repository import DatabaseRepository
+from nutrilog.api import models
+from nutrilog.api.dependencies import get_repository
+from nutrilog.database import models as db_models
+from nutrilog.database.repository import DatabaseRepository
 
 router = APIRouter(prefix="/v1", tags=["v1"])
 
@@ -18,7 +18,7 @@ UserRepository = Annotated[
 ]
 
 
-@router.post("/food", status_code=status.HTTP_201_CREATED)
+@router.post("/foods", status_code=status.HTTP_201_CREATED)
 async def create_food(
     data: models.FoodPayload, repository: FoodRepository
 ) -> models.Food:
@@ -43,9 +43,9 @@ async def get_food(pk: uuid.UUID, repository: FoodRepository) -> models.Food:
     return models.Food.model_validate(food)
 
 
-@router.gget("/users", status_code=status.HTTP_201_CREATED)
+@router.post("/users", status_code=status.HTTP_201_CREATED)
 async def create_user(
-    data: models.User,
+    data: models.UserPayload,
     food_repository: FoodRepository,
     user_repository: UserRepository,
 ) -> models.User:
@@ -61,7 +61,7 @@ async def get_users(repository: UserRepository) -> list[models.User]:
     return [models.User.model_validate(user) for user in users]
 
 
-@router.get("/user/{pk}", status_code=status.HTTP_200_OK)
+@router.get("/users/{pk}", status_code=status.HTTP_200_OK)
 async def get_user(pk: uuid.UUID, repository: UserRepository) -> models.User:
     user = await repository.get(pk)
     if user is None:

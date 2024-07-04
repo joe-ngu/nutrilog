@@ -4,7 +4,7 @@ from typing import Generic, TypeVar
 from sqlalchemy import BinaryExpression, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from NutriLog.database import models
+from nutrilog.database import models
 
 Model = TypeVar("Model", bound=models.Base)
 
@@ -34,4 +34,3 @@ class DatabaseRepository(Generic[Model]):
         if expressions:
             query = query.where(*expressions)
         return list(await self.session.scalars(query))
-

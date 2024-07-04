@@ -1,13 +1,10 @@
 from collections.abc import AsyncGenerator
 
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.ext.asyncio import (
-    AsyncSession,
-    async_sessionmaker,
-    create_async_engine
-)
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from NutriLog.config import settings
+from nutrilog.config import settings
+
 
 async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
     engine = create_async_engine(settings.database_url)

@@ -3,7 +3,7 @@ from collections.abc import Callable
 from fastapi import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from NutriLog.database import models, repository, session
+from nutrilog.database import models, repository, session
 
 
 def get_repository(
